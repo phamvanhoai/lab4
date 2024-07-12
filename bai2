@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <ctype.h>
+#include <string.h>
+
+// Hàm kiểm tra xem chuỗi có phải là số hợp lệ hay không
+bool isNumber(char *str) {
+    if (str[0] == '\0') return false; // kiểm tra chuỗi rỗng
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (!isdigit(str[i]) && str[i] != '-' && str[i] != '+') {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    char input[50];
+    int hours, minutes;
+
+    // Nhập số giờ
+    while (true) {
+        printf("Nhap so gio: ");
+        scanf("%s", input);
+        if (isNumber(input)) {
+            hours = atoi(input);
+            if (hours >= 0) break;
+        }
+        printf("Loi: Gia tri nhap vao khong hop le. Vui long nhap lai.\n");
+    }
+
+    // Nhập số phút
+    while (true) {
+        printf("Nhap so phut: ");
+        scanf("%s", input);
+        if (isNumber(input)) {
+            minutes = atoi(input);
+            if (minutes >= 0) break;
+        }
+        printf("Loi: Gia tri nhap vao khong hop le. Vui long nhap lai.\n");
+    }
+
+    // Tính tổng số phút
+    int totalMinutes = hours * 60 + minutes;
+
+    // Hiển thị kết quả
+    printf("Tong so phut: %d\n", totalMinutes);
+    printf("Ho ten: Pham Van Hoai\n");
+
+    return 0;
+}
