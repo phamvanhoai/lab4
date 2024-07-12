@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+void sap_xep(int arr[], int n) {
+    int temp;
+    for(int i = 0; i < n - 1; i++) {
+        for(int j = i + 1; j < n; j++) {
+            if(arr[i] > arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+
+int kiem_tra_day_tang_dan(int arr[], int n) {
+    for(int i = 0; i < n - 1; i++) {
+        if(arr[i] > arr[i + 1]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    printf("Ho ten: Pham Van Hoai");
+
+    char input[100];
+    printf("Nhap vao day so cach nhau boi dau cach: ");
+    fgets(input, sizeof(input), stdin);
+
+    int arr[100], n = 0;
+    char *token = strtok(input, " ");
+    while(token != NULL) {
+        if (!isdigit(*token) && *token != '-') {
+            printf("Da nhap ky tu khong phai so. Vui long nhap lai day so.\n");
+            return 1;
+        }
+        arr[n++] = atoi(token);
+        token = strtok(NULL, " ");
+    }
+
+    if (kiem_tra_day_tang_dan(arr, n)) {
+        sap_xep(arr, n);
+        printf("Day so nay tang dan: ");
+        for(int i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
+    } else {
+        printf("Day so nay khong tang dan.\n");
+    }
+
+    return 0;
+}
