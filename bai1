@@ -57,15 +57,15 @@ int main() {
     int arr[n];
 
     // Nhập các phần tử của dãy
+    printf("Nhap cac phan tu cua day: ");
     for (int i = 0; i < n; i++) {
         while (true) {
-            printf("Nhap phan tu thu %d: ", i + 1);
             scanf("%s", input);
             if (isNumber(input)) {
                 arr[i] = atoi(input);
                 break;
             }
-            printf("Loi: Ky tu nhap vao khong hop le. Vui long nhap lai.\n");
+            printf("Loi: Ky tu nhap vao khong hop le. Vui long nhap lai phan tu thu %d: ", i + 1);
         }
     }
 
